@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User } = require('../models');
+const { User, Book } = require('../models');  // added Book 
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -39,6 +39,7 @@ const resolvers = {
         )
         return updatedUser;
       }
+      throw new AuthenticationError('You are not logged in.');
     },
     removeBook: async (parent, { bookId }, context) => {
       if (context.user) {
@@ -49,8 +50,8 @@ const resolvers = {
         )
         return updatedUser;
       }
-      throw new AuthenticationError('Incorrect credentials');
-    },
+      throw new AuthenticationError('You are not logged in.');
+    }
   },
 
 };
