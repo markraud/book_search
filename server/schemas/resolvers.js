@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Book } = require('../models');  // added Book 
+const { User } = require('../models');  // may need to add Book 
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -10,7 +10,7 @@ const resolvers = {
         return userData;
       }
       throw new AuthenticationError('No user found with this email address');
-    }
+    },
   },
   Mutation: {
     addUser: async (parent, args) => {
