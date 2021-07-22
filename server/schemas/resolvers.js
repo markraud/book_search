@@ -39,7 +39,7 @@ const resolvers = {
         )
         return updatedUser;
       }
-      throw new AuthenticationError('You are not logged in.');
+      throw new AuthenticationError('You are not logged in Mark.');
     },
     removeBook: async (parent, { bookId }, context) => {
       if (context.user) {
